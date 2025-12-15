@@ -13,14 +13,14 @@ from PIL import Image
 
 def validate_single_image():
     # 加载训练好的模型
-    model_path = 'best1105.pt'
+    model_path = '.pt'
     model = YOLO(model_path)
 
     # 选择验证集中的一张图像
     image_path = 'comparison1.jpg'  # 替换为实际路径 8和11没测过
 
     # 单张图像检测
-    results = model(image_path, conf=0.45)
+    results = model(image_path, conf=0.65)
 
     # 显示结果
     for result in results:
@@ -37,4 +37,5 @@ def validate_single_image():
 
 
 if __name__ == '__main__':
+
     validate_single_image()
