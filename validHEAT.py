@@ -20,7 +20,6 @@ class YOLOv8DDAWAHeatmapVisualizer:
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     def load_model(self):
-        """加载YOLOv8-DDAWA模型"""
         try:
             # 加载检查点文件
             checkpoint = torch.load(self.model_path, map_location=self.device)
@@ -29,7 +28,7 @@ class YOLOv8DDAWAHeatmapVisualizer:
             if 'model' in checkpoint:
                 # 这是Ultralytics格式的检查点
                 self.model = checkpoint['model']
-                print(f"✅ 成功加载YOLOv8-DDAWA模型 (检查点格式)")
+                print(f"✅ 成功加载模型 (检查点格式)")
                 print(f"训练轮次: {checkpoint.get('epoch', 'N/A')}")
                 print(f"最佳fitness: {checkpoint.get('best_fitness', 'N/A')}")
                 print(f"模型参数量: {sum(p.numel() for p in self.model.parameters()):,}")
@@ -392,7 +391,7 @@ if __name__ == "__main__":
     print("🚀 开始YOLOv8-DDAWA热力图分析...")
 
     # 配置参数
-    model_path = "yolov8s.pt"  # 您的YOLOv8-DDAWA模型文件
+    model_path = ".pt"  # 您的YOLOv8-DDAWA模型文件
     image_path = "val1.jpg"  # 测试图像
     output_dir = "yolov8_ddawa_heatmaps_results"
 
@@ -405,5 +404,6 @@ if __name__ == "__main__":
 
     # 生成热力图
     visualizer.generate_heatmaps(image_path, output_dir)
+
 
     print("🎉 分析完成！")
